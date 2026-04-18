@@ -280,8 +280,6 @@ alias r='pokemon-colorscripts -r'
 
 path=($HOME/.local/lib/npm/bin /Applications/kitty.app/Contents/MacOS $path)
 
-# Zsh の場合
-# 設定ファイル (~/.zshrc など) に以下の行を追加
 autoload -U compinit
 compinit
 
