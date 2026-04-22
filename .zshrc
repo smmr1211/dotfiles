@@ -369,3 +369,39 @@ git-add-screenshot () {
   echo "git push origin ${target_branch}"
   echo "${reset_color}"
 }
+
+# PDFの圧縮
+function pdfmin()
+{
+    (
+        local cnt=0
+        for i in "$@"; do
+            (
+                local in_file="${i}"
+                local out_file="${i%.*}.min.pdf" 
+
+                local size_before=$(wc -c < "${in_file}")
+
+                # 実際の圧縮処理
+                gs -sDEVICE=pdfwrite \
+                   -dCompatibilityLevel=1.4 \
+                   -dPDFSETTINGS=/ebook \
+                   -dNOPAUSE -dQUIET -dBATCH \
+                   -sOutputFile="${out_file}" "${in_file}"
+
+                # 圧縮後のファイルサイズ（バイト数）を取得
+                local size_after=$(wc -c < "${out_file}")
+
+                awk -v before="${size_before}" -v after="${size_after}" -v name="${in_file}" 'BEGIN {
+                    mb_before = before / 1048576;
+                    mb_after = after / 1048576;
+                    ratio = (before > 0) ? (after / before) * 100 : 0;
+                    printf "%s : %.2f MB -> %.2f MB (%.1f%%)\n", name, mb_before, mb_after, ratio;
+                }'
+            ) &
+            
+            (( (cnt += 1) % 4 == 0 )) && wait
+        done
+        wait && echo "DONE!!" && return 0
+    )
+}
