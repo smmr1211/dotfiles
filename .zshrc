@@ -168,6 +168,7 @@ alias nap="source ~/venv/napari/bin/activate"
 alias -g T="| tail"
 alias dirs="dirs -v"
 alias which="which -a"
+alias seg="cd ~/Research/Code/ML_Segmentation/Brownian_project/syntheticbrownianseg/"
 
 setopt MENU_COMPLETE
 setopt AUTO_CD
@@ -405,3 +406,6 @@ function pdfmin()
         wait && echo "DONE!!" && return 0
     )
 }
+eval "$(rbenv init -)"
+export PATH="$HOME/.rbenv/bin:$PATH"
+export RUBYOPT="-r logger"
