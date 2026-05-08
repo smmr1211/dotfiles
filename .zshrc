@@ -158,6 +158,7 @@ fignore=(.o .aux .log .bbl .blg .lof .dvi .fls .fdb_latexmk .synctex.gz .lot .to
 
 alias tls="tmux ls"
 alias ls="ls -G -F"
+alias r="rails"
 alias ez="emacs ~/.zshrc"
 alias nz="nvim ~/.zshrc"
 alias sz="source ~/.zshrc"
@@ -277,7 +278,7 @@ if [[ $TERM == 'xterm-kitty' ]]; then
     fi
 export PATH=/opt/local/bin/latexindent:$PATH
 alias gitlog='git log --oneline --graph --decorate'
-alias r='pokemon-colorscripts -r'
+alias p='pokemon-colorscripts -r'
 
 path=($HOME/.local/lib/npm/bin /Applications/kitty.app/Contents/MacOS $path)
 
